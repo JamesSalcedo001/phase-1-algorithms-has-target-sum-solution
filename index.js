@@ -1,13 +1,28 @@
 function hasTargetSum(array, target) {
-  // Write your algorithm here
+  const seenNumbers = new Set();
+  for (const num of array) {
+    const complement = target - num;
+    if (seenNumbers.has(complement)) return true;
+    seenNumbers.add(num);
+  }
+  return false;
 }
 
 /* 
   Write the Big O time complexity of your function here
+  0(n)
 */
 
 /* 
   Add your pseudocode here
+  I can create an object to track all the numbers seen
+  loop through all the numbers
+  for every number, check for a complement
+  check the keys in the created obj and see if any are that complement
+  if yes, return true
+  save the number to check for other numbers that work
+  if loop through all without returning true, return false
+ 
 */
 
 /*
@@ -29,6 +44,9 @@ if (require.main === module) {
 
   console.log("Expecting: false");
   console.log("=>", hasTargetSum([1, 2, 5], 4));
+
+  console.log("Expecting: false");
+  console.log("=>", hasTargetSum([4], 4));
 }
 
 module.exports = hasTargetSum;
